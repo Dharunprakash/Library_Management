@@ -1,33 +1,38 @@
 package library_management;
 
-import java.util.Scanner;
-
-public class UserMenu {
-    private static final Scanner scanner = new Scanner(System.in);
+public class AdminMenu {
 
     public static void display() throws Exception {
         boolean logout = false;
         while (!logout) {
-            System.out.println(Library.centerString("User Menu", 70, Library.PURPLE));
-            DisplayTable.displayMenu("User Menu", new String[] { "1.View Books", "2.Search and Buy Books",
-                    "3.Borrow Book", "4.Return Book", "5.Logout" });
+            System.out.println(Library.centerString("Admin Menu", 70, Library.PURPLE));
+          
+            DisplayTable.displayMenu("Admin Menu", new String[] { "1.Add Book", "2.Edit Book", "3.Remove Book", "4.View Books",
+                    "5.View Users", "6.Add User", "7.Logout" });
             System.out.print(Library.YELLOW + "Enter your choice: " + Library.RESET);
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = Library.scanner.nextInt();
+            Library.scanner.nextLine();
             switch (choice) {
                 case 1:
-                    BookingLogics.viewBooks();
+                    AdminLogics.addBook();
                     break;
                 case 2:
-                    BookingLogics.searchAndBuyBook();
+                    AdminLogics.editBook();
                     break;
+
                 case 3:
-                    BookingLogics.borrowBook();
+                    AdminLogics.removeBook();
                     break;
                 case 4:
-                    BookingLogics.returnBook();
+                    BookingLogics.viewBooks();
                     break;
                 case 5:
+                    AdminLogics.viewUsers();
+                    break;
+                case 6:
+                    AdminLogics.addUser();
+                    break;
+                case 7:
                     logout = true;
                     System.out.println(Library.GREEN + "Logged out successfully." + Library.RESET);
                     break;

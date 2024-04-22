@@ -26,11 +26,11 @@ CREATE TABLE Transactions (
     TransactionID INT AUTO_INCREMENT PRIMARY KEY,
     UserID INT,
     BookID INT,
-    TransactionType ENUM('Borrow', 'Return'),
     TransactionDate DATETIME,
     DueDate DATE,
     ReturnDate DATE,
     FineAmount DECIMAL(10, 2),
+    Reservation_avilable_date DATE,
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
     FOREIGN KEY (BookID) REFERENCES Books(BookID)
 );
@@ -43,8 +43,9 @@ CREATE TABLE Reservations (
     PickupDate DATETIME,
     Status ENUM('Pending', 'Confirmed', 'Cancelled'),
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (BookID) REFERENCES Books(BookID)
+    FOREIGN KEY (BookID) REFERENCES Books(BookID)+
 );
+
 CREATE TABLE Reviews (
     ReviewID INT AUTO_INCREMENT PRIMARY KEY,
     UserID INT,
@@ -58,3 +59,4 @@ CREATE TABLE Reviews (
 select * from users;
 
 
+insert into users (Username, Password, Role) values ('ab', '123', 'Admin');
